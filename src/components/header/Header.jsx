@@ -1,27 +1,28 @@
-import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
-import { OrderBasket } from './OrderBasket'
-import { useSelector } from 'react-redux'
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import { OrderBasket } from "./OrderBasket";
+import { useSelector } from "react-redux";
+import { Button } from "@mui/material";
 
 export const Header = ({ toggleHandler }) => {
-  const [animationClass, setAnimationClass] = useState('')
-  const { items } = useSelector((state) => state.basket)
+  const [animationClass, setAnimationClass] = useState("");
+  const { items } = useSelector((state) => state.basket);
 
   const plusAnimation = () => {
-    setAnimationClass('bump')
+    setAnimationClass("bump");
 
     const animationTimePlus = setTimeout(() => {
-      setAnimationClass('')
-    }, 300)
+      setAnimationClass("");
+    }, 300);
 
     return () => {
-      clearTimeout(animationTimePlus)
-    }
-  }
+      clearTimeout(animationTimePlus);
+    };
+  };
 
   useEffect(() => {
-    plusAnimation()
-  }, [items])
+    plusAnimation();
+  }, [items]);
 
   return (
     <HeaderStyle>
@@ -30,10 +31,11 @@ export const Header = ({ toggleHandler }) => {
         <OrderBasket className={animationClass} toggleHandler={toggleHandler}>
           Your Cart
         </OrderBasket>
+        <Button variant="contained">SignIn</Button>
       </Container>
     </HeaderStyle>
-  )
-}
+  );
+};
 
 const HeaderStyle = styled.header`
   position: fixed;
@@ -66,19 +68,19 @@ const HeaderStyle = styled.header`
       transform: scale(1);
     }
   }
-`
+`;
 
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`
+`;
 
 const MealsText = styled.p`
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
   font-size: 38px;
   line-height: 57px;
   color: #ffffff;
-`
+`;
